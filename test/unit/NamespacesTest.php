@@ -24,6 +24,11 @@ class Namespaces extends \PHPUnit_Framework_TestCase
 
   /**
    * @dataProvider constructorProvider
+   *
+   * @covers Sandbox\MyNamespace\Foo
+   * @covers Sandbox\MyOtherNamespace\Foo
+   * @covers Sandbox\MyOtherNamespace\Bar
+   * @covers Sandbox\MyNamespace\DateTime
    */
   public function testConstructors($object, $expected)
   {

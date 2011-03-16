@@ -77,4 +77,9 @@ class Bar extends Foo
    * @var bool
    */
   protected $isActive;
+
+  /**
+   * @var DateTime
+   */
+  protected $createdAt;
 }

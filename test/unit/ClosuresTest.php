@@ -18,6 +18,9 @@ class Closures extends \PHPUnit_Framework_TestCase
     $this->assertEquals(240, $fnUseReference(), 'use() statement accepts variables by reference.');
   }
 
+  /**
+   * @covers Sandbox\Closures\Foo
+   */
   public function testFoo()
   {
     global $fnWithSelf;

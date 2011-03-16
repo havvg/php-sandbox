@@ -3,6 +3,7 @@
 namespace Sandbox\Test;
 
 use
+  \DateTime,
   Sandbox\Reflection\Foo,
   Sandbox\Reflection\Bar;
 
@@ -28,11 +29,14 @@ class Reflection extends \PHPUnit_Framework_TestCase
       array('name',     'Foobar',   'The string has been set correctly.'),
       array('isActive', false,      'The bool has been set correctly.'),
       array('isActive', true,       'The bool has been set correctly.'),
+      array('createdAt', new DateTime, 'The DateTime object has been set correctly.'),
     );
   }
 
   /**
    * @dataProvider validProvider
+   * @covers Sandbox\Reflection\Foo::__set
+   * @covers Sandbox\Reflection\Foo::__get
    */
   public function testValidInput($name, $value, $message)
   {
@@ -50,15 +54,20 @@ class Reflection extends \PHPUnit_Framework_TestCase
       array('id',       array(5),   'Exception', 'An array is no integer.'),
       array('name',     5,          'Exception', 'An integer is no string.'),
       array('isActive', 5,          'Exception', 'An integer is no bool.'),
+      array('createdAt', 12,        'Exception', 'An integer is no DateTime object.'),
     );
   }
 
   /**
    * @dataProvider invalidProvider
+   * @covers Sandbox\Reflection\Foo::__set
+   * @covers Sandbox\Reflection\Foo::__get
    */
   public function testInvalidInput($name, $value, $exception, $message)
   {
     $this->setExpectedException($exception);
     $this->bar->$name = $value;
+
+    $this->info($message);
   }
 }

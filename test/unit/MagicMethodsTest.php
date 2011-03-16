@@ -11,6 +11,9 @@ require_once(__DIR__ . '/../../lib/MagicMethods.php');
  */
 class MagicMethods extends \PHPUnit_Extensions_OutputTestCase
 {
+  /**
+   * @covers Sandbox\MagicMethods\Foo::__construct
+   */
   public function testConstruct()
   {
     $this->expectOutputString('called Foo::__construct()');
@@ -20,6 +23,7 @@ class MagicMethods extends \PHPUnit_Extensions_OutputTestCase
 
   /**
    * @depends testConstruct
+   * @covers Sandbox\MagicMethods\Foo::__toString
    */
   public function testToString($foo)
   {
@@ -30,6 +34,7 @@ class MagicMethods extends \PHPUnit_Extensions_OutputTestCase
 
   /**
    * @depends testToString
+   * @covers Sandbox\MagicMethods\Foo::__set
    */
   public function testSet($foo)
   {
@@ -41,6 +46,7 @@ class MagicMethods extends \PHPUnit_Extensions_OutputTestCase
 
   /**
    * @depends testSet
+   * @covers Sandbox\MagicMethods\Foo::__get
    */
   public function testGet($foo)
   {
@@ -50,6 +56,7 @@ class MagicMethods extends \PHPUnit_Extensions_OutputTestCase
 
   /**
    * @depends testGet
+   * @covers Sandbox\MagicMethods\Foo::__destruct
    */
   public function testDestruct()
   {
