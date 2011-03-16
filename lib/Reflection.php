@@ -1,11 +1,17 @@
 <?php
 
+namespace Sandbox\Reflection;
+
+use
+  \Exception,
+  \ReflectionClass;
+
 class Foo
 {
   public function __set($name, $value)
   {
     $valid = false;
-    
+
     $reflection = new ReflectionClass($this);
     if ($reflection->hasProperty($name))
     {
@@ -31,7 +37,7 @@ class Foo
         }
       }
     }
-    
+
     if ($valid)
     {
       $this->$name = $value;
@@ -41,7 +47,7 @@ class Foo
       throw new Exception('The given value is invalid.');
     }
   }
-  
+
   public function __get($name)
   {
     if (isset($this->$name))
@@ -72,32 +78,3 @@ class Bar extends Foo
    */
   protected $isActive;
 }
-
-$bar = new Bar();
-
-try
-{
-  $bar->id = 'bla';
-}
-catch (Exception $e)
-{
-  echo 'Exception on __set(id, bla) caught.', PHP_EOL;
-}
-
-try
-{
-  echo $bar->id;
-}
-catch (Exception $e)
-{
-  echo 'Exception on __get(id) caught.', PHP_EOL;
-}
-
-$bar->id = 5;
-echo $bar->id, PHP_EOL;
-
-$bar->isActive = true;
-echo (int) $bar->isActive, PHP_EOL;
-
-$bar->name = 'BarName';
-echo $bar->name, PHP_EOL;

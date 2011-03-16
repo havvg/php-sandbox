@@ -1,5 +1,7 @@
 <?php
 
+namespace Sandbox\LateStaticBinding;
+
 class Foo
 {
   protected static $value = 'foo';
@@ -19,10 +21,3 @@ class Bar extends Foo
 {
   protected static $value = 'bar';
 }
-
-echo
-  Foo::getStaticValue(), PHP_EOL,            # foo
-  Foo::getLateBoundStaticValue(), PHP_EOL,   # foo
-  Bar::getStaticValue(), PHP_EOL,            # foo
-  Bar::getLateBoundStaticValue(), PHP_EOL    # bar
-;

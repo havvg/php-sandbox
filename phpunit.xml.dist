@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+  backupGlobals="false"
+  forceCoversAnnotation="true"
+  convertErrorsToExceptions="true"
+  convertNoticesToExceptions="true"
+  convertWarningsToExceptions="true"
+  stopOnFailure="true"
+  strict="true">
+
+  <testsuites>
+    <testsuite name="Unit Tests">
+      <directory>test/unit/</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
